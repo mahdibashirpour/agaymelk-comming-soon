@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<title>بزودی </title>
+
+		<link
+			href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css"
+			rel="stylesheet"
+			type="text/css"
+		/>
+		<style>
+			body {
+				margin: 0;
+				font-family: Vazirmatn, sans-serif;
+			}
+			.comingSoon {
+				background-image: url("https://asavoip.ir/wp-content/uploads/comingsoonimage.jpg");
+				width: 100vw;
+				height: 100vh;
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: cover;
+				overflow: hidden;
+				display: flex;
+				align-items: center;
+				justify-content: start;
+				flex-direction: column;
+			}
+			@media screen and (max-width: 550px) {
+				.comingSoon .containerWrapper {
+					position: fixed;
+					width: 100%;
+					border-radius: unset;
+					border: unset;
+				}
+				.comingSoon .timer {
+					margin: 0 15px;
+				}
+				.comingSoon .timer h3 {
+					font-size: 30px;
+				}
+				.comingSoon .timer p {
+					font-size: 18px;
+				}
+				.teamCard .teamImage {
+					width: 100%;
+				}
+				.customCheckoutContainer .woocommerce-billing-fields .form-row {
+					width: 100%;
+				}
+				.paymentSuccessful .tablePaymentSuccess {
+					overflow-x: scroll;
+				}
+				.paymentSuccessful .tablePaymentSuccess table {
+					width: 150%;
+				}
+				.topBgSectionAboutUs {
+					margin: 5px 20px 0 !important;
+				}
+			}
+
+			h1.heading {
+				color: #0a174e;
+				font-size: 30px;
+				margin: 15px 0px 30px;
+				text-align: center;
+				line-height: 60px;
+				font-weight: 700;
+			}
+			.containerWrapper {
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				margin-top: 20px;
+				background: rgba(255, 255, 255, 0);
+				border-radius: 15px 15px 0 0;
+				overflow: hidden;
+				padding: 25px 30px;
+				position: absolute;
+				bottom: 0;
+				border: 1px solid #efefef;
+				background-image: url("./SimpleShiny.svg");
+				background-position: center;
+				background-size: cover;
+				-webkit-backdrop-filter: blur(5.5px);
+				backdrop-filter: blur(5.5px);
+			}
+			.seprator {
+				font-size: 50px;
+				color: #fff;
+			}
+			.timer {
+				text-align: center;
+				margin: 0 30px;
+			}
+
+			.timer h3 {
+				color: #fff;
+				font-size: clamp(3rem, 2.5rem, 2rem);
+				margin: 0;
+				font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+				border-bottom: 2px solid #efefef;
+				padding-bottom: 10px;
+				margin-bottom: 10px;
+			}
+
+			.timer p {
+				color: #fff;
+				font-size: 22px;
+				margin: 0;
+			}
+
+			@media screen and (max-width: 600px) {
+				.container {
+					width: 100%;
+					border-radius: 0;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="comingSoon">
+			<h1 class="heading">
+				در حال طراحی هستیم،<br />
+				به زودی وبسایت شما رونمایی می‌شود (:
+			</h1>
+			<div class="containerWrapper">
+				<div class="timer">
+					<h3 id="second">00</h3>
+					<p>ثانیه</p>
+				</div>
+				<span class="seprator">:</span>
+				<div class="timer">
+					<h3 id="minute">00</h3>
+					<p>دقیقه</p>
+				</div>
+				<span class="seprator">:</span>
+				<div class="timer">
+					<h3 id="hour">00</h3>
+					<p>ساعت</p>
+				</div>
+				<span class="seprator">:</span>
+				<div class="timer">
+					<h3 id="day">00</h3>
+					<p>روز</p>
+				</div>
+			</div>
+			<span class="heading"></span>
+		</div>
+		<script>
+			let siteComplete = Date.parse("2023/05/08");
+			let seconds = 1000;
+			let minutes = 60 * seconds;
+			let hours = 60 * minutes;
+			let days = 24 * hours;
+			let timer = setInterval(updateTimer, seconds);
+
+			function updateTimer() {
+				let today = new Date();
+				let diffrence = siteComplete - today;
+				if (diffrence <= -days) {
+					clearInterval(timer);
+					return;
+				} else if (diffrence <= 0) {
+					clearInterval(timer);
+					return;
+				}
+				let d = Math.floor(diffrence / days);
+				let h = Math.floor((diffrence % days) / hours);
+				let m = Math.floor((diffrence % hours) / minutes);
+				let s = Math.floor((diffrence % minutes) / seconds);
+				document.querySelector("#day").textContent = d;
+				document.querySelector("#hour").textContent = h;
+				document.querySelector("#minute").textContent = m;
+				document.querySelector("#second").textContent = s;
+			}
+		</script>
+	</body>
+</html>
